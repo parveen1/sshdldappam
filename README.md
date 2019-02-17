@@ -30,7 +30,7 @@ By using this command
 docker run --rm --network sshnet --name ldap --hostname ldap -d parveen1992/ldap
 ```
 
-** check this by correct ip address my ip is 172.19.0.2 **
+**check this by correct ip address my ip is 172.19.0.2**
 
 ```
 [root@localhost pam_ssh_ldap]# docker ps 
@@ -62,7 +62,7 @@ c10688f5301c        parveen1992/ldap    "/opt/docker/start..."   9 seconds ago  
 docker run --rm -p 1022:1022 --network sshnet --name sshserver --hostname sshserver -it parveen1992/sshserver
 ```
 
-** check this **
+**check this**
 	
 ```
 [root@sshserver docker]# getent passwd pere
@@ -120,7 +120,7 @@ Last login: Sun Feb 17 15:17:39 2019 from ::1
 docker run --rm --network sshnet --privileged --name client  --hostname client -it parveen1992/hostmountssh
 ```
 
-** check this ** 
+**check this** 
 	
 ```
 [root@client docker]# getent passwd pere
@@ -182,9 +182,6 @@ docker run --rm --network sshnet --privileged --name client  -hostname client -i
 	[pere@client ~]$ su - anna
 	pam_mount password:
 	Creating directory '/tmp/home/anna'.
-	[anna@client ~]$ ll
-	total 0
-	drwxr-xr-x+ 2 anna alumnes 0 Feb 16 21:58 anna
 
 	[anna@client ~]$ pwd
 	/tmp/home/anna
