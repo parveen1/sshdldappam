@@ -20,7 +20,7 @@ By using this command
 8ff156696dccf766367d5fbb6814b46e2f4b286dd4ea73d980fbfd67a943671e
 ```
 
-##1 Ldap Server
+## 1 Ldap Server
 	* Dockerfile need to edit some pacquetes  (procps openldap-clients openldap-servers)
 	* Put database edt.org also new group and manager as admin
 	* Turn on server slpad	
@@ -45,7 +45,7 @@ c10688f5301c        parveen1992/ldap    "/opt/docker/start..."   9 seconds ago  
 	objectClass: organizationalunit
 ```
 
-##2 ssh Server
+## 2 ssh Server
 	
 	* Docker line need add more packets  (procps vim passwd openldap-clients nss-pam-ldapd authconfig pam_mount openssh-server nmap).
 	* Make some localuser and group late for check test.also need to give password.
@@ -107,7 +107,7 @@ Last login: Sun Feb 17 15:17:39 2019 from ::1
 ```
 
 
-##3 Pamhost or cliente
+## 3 Pamhost or cliente
 	
 	* Docker line need add more packets (procps passwd openldap-clients nss-pam-ldapd authconfig pam_mount openssh-server)
 	* ssh-key to connect server and user (ssh-keygen -A).
