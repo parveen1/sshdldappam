@@ -55,7 +55,6 @@ c10688f5301c        parveen1992/ldap    "/opt/docker/start..."   9 seconds ago  
 	* Start server to connect ldap server(nscd,nslcd).
 	* After connect server we need edit ssh give conf of user(/etc/security/access-sshd.conf).
 	* mkdir for every user and import give own premission.
-	* now start server (smbd,nmbd).
 	This one my server to user
 	
 ```
