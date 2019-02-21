@@ -21,10 +21,12 @@ By using this command
 ```
 
 ## 1 Ldap Server
-	* Dockerfile need to edit some pacquetes  (procps openldap-clients openldap-servers)
-	* Put database edt.org also new group and manager as admin
-	* Turn on server slpad	
-	This one my server from use
+	
+* Dockerfile need to edit some pacquetes  (procps openldap-clients openldap-servers)
+* Put database edt.org also new group and manager as admin
+* Turn on server slpad	
+	
+This one my server from use
 	
 ```
 docker run --rm --network sshnet --name ldap --hostname ldap -d parveen1992/ldap
@@ -38,24 +40,27 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 c10688f5301c        parveen1992/ldap    "/opt/docker/start..."   9 seconds ago       Up 7 seconds        389/tcp             ldap
 
 [root@localhost practica]# ldapsearch -x -LLL -h 172.19.0.2 -b dc=edt,dc=org 'ou=grups'
-	dn: ou=grups,dc=edt,dc=org
-	ou: groups
-	ou: grups
-	description: Container per a grups
-	objectClass: organizationalunit
+dn: ou=grups,dc=edt,dc=org
+ou: groups
+ou: grups
+description: Container per a grups
+objectClass: organizationalunit
 ```
 
 ## 2 ssh Server
 	
-	* Docker line need add more packets  (procps vim passwd openldap-clients nss-pam-ldapd authconfig pam_mount openssh-server nmap).
-	* Make some localuser and group late for check test.also need to give password.
-	* Now we need cp file accordig to setting in (/opt/docker/auth.sh)to connect ldapserver 	
-	* File pam need to conf.(/etc/pam.d/sshd)	
-	* Now we need connection to ldap server befor we make (Ldap server).
-	* Start server to connect ldap server(nscd,nslcd).
-	* After connect server we need edit ssh give conf of user(/etc/security/access-sshd.conf).
-	* mkdir for every user and import give own premission.
-	This one my server to user
+* Docker line need add more packets  (procps vim passwd openldap-clients nss-pam-ldapd authconfig pam_mount openssh-server nmap).
+* Make some localuser and group late for check test.also need to give password.
+* Now we need cp file accordig to setting in (/opt/docker/auth.sh)to connect ldapserver 	
+* File pam need to conf.(/etc/pam.d/sshd)	
+* Now we need connection to ldap server befor we make (Ldap server).
+* Start server to connect ldap server(nscd,nslcd).
+* After connect server we need edit ssh give conf of user(/etc/security/access-sshd.conf).
+* mkdir for every user and import give own premission.
+
+
+
+This one my server to user
 	
 ```
 docker run --rm -p 1022:1022 --network sshnet --name sshserver --hostname sshserver -it parveen1992/sshserver
@@ -108,12 +113,13 @@ Last login: Sun Feb 17 15:17:39 2019 from ::1
 
 ## 3 Pamhost or cliente
 	
-	* Docker line need add more packets (procps passwd openldap-clients nss-pam-ldapd authconfig pam_mount openssh-server)
-	* ssh-key to connect server and user (ssh-keygen -A).
-	* Make confgure file for ldapserver connection (nsswitch.conf).
-	* ALso need pam system conf. for login user and mkhomedir (/etc/pam.d/system-auth.edt) .
-	* Start server to connect ldap server(nscd,nslcd).
-	This my PamHost is
+* Docker line need add more packets (procps passwd openldap-clients nss-pam-ldapd authconfig pam_mount openssh-server)
+* ssh-key to connect server and user (ssh-keygen -A).
+* Make confgure file for ldapserver connection (nsswitch.conf).
+* ALso need pam system conf. for login user and mkhomedir (/etc/pam.d/system-auth.edt) .
+* Start server to connect ldap server(nscd,nslcd).
+
+This my PamHost is
 	
 ```
 docker run --rm --network sshnet --privileged --name client  --hostname client -it parveen1992/hostmountssh
@@ -170,18 +176,18 @@ Last login: Sun Feb 17 15:21:24 2019 from 172.19.0.1
 ### All to start
 
 ```
-docker run --rm --network sshnet --name ldap --hostname ldap -d parveeen1992/ldap
+docker run --rm --network sshnet --name ldap --hostname ldap -d parveen1992/ldap
 docker run --rm -p 1022:1022 --network sshnet --name sshserver --hostname sshserver -it parveen1992/sshserver
-docker run --rm --network sshnet --privileged --name client  -hostname client -it parveen1992/hostmountssh
+docker run --rm --network sshnet --privileged --name client  --hostname client -it parveen1992/hostmountssh
 ```
 
 ### Check this order after strat to verify
 
 ```
-	[pere@client ~]$ su - anna
-	pam_mount password:
-	Creating directory '/tmp/home/anna'.
+[pere@client ~]$ su - anna
+pam_mount password:
+Creating directory '/tmp/home/anna'.
 
-	[anna@client ~]$ pwd
-	/tmp/home/anna
+[anna@client ~]$ pwd
+/tmp/home/anna
 ```
